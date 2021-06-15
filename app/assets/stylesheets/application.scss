@@ -1,0 +1,179 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+// application.html/header
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.container {
+  width: 100%;
+  height: 80px;
+  padding: 0;
+  background: #e3d7a3;
+}
+
+.navigation {
+  width: 90%;
+  height: 80px;
+  margin: 0 auto;
+}
+
+.navbar-left {
+  font-family: cursive, "MS ゴシック";
+  font-size: 32px;
+  line-height: 80px;
+}
+
+.navbar-left > a {
+  color: white;
+}
+
+.navbar-items {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-items .item {
+  font-family: "Noto Serif Japanese";
+  height: 60px;
+  width: 100px;
+  line-height: 60px;
+  display: inline-block;
+  margin: 10px 20px 10px;
+  padding: 0;
+  text-align: center;
+  color: white;
+  background: #C0C0C0;
+  border-radius: 10px;
+}
+
+.navbar-items .item a {
+  color: white;
+}
+
+.navbar-items .item a:hover {
+  color: grey;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.footer-content {
+  text-align: center;
+  margin-top: 20px;
+}
+
+//end_user/registration/new&session/new
+.top-title {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.sign-container {
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.field {
+  width: 50%;
+  margin: 20px auto;
+  position: relative;
+}
+
+.form-area {
+  display: inline-block;
+}
+
+.main-label {
+  position: absolute;
+}
+
+.sub-label {
+  display: block;
+  padding-right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  float: right;
+}
+
+.form-area-email {
+  width: 160px;
+  position: relative;
+  display: inline-block;
+  left: -108px;
+}
+
+.form-area-password {
+  display: inline-block;
+  position: relative;
+  left: -70px;
+}
+
+.actions {
+  margin-top: 50px;
+}
+
+.login-link {
+  width: 80%;
+  position: relative;
+}
+
+.form-area-link {
+  text-align: left;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+  left: -110px;
+}
+
+.login-label {
+  display: inline-block;
+  margin-top: 20px;
+  position: relative;
+  left: -90px;
+}
+
+.form-area-pass {
+  width: 230px;
+  display: inline-block;
+  position: relative;
+  left: 13px;
+}
+
+.reg {
+  left: -70px;
+}
+
+.btn-danger {
+  font-size: 12px;
+  position: relative;
+  right: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-warning {
+  margin-bottom: 20px;
+}
