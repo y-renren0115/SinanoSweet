@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   }
     
   namespace :customer do
+    get '/confirm' => 'customers#confirm'
+    patch '/withdrawal' => 'customers#withdrawal'
     resources :items, only: [:index]
     resources :cart_items, only: [:index, :update, :create]
     resource :customers, only: [:show, :edit, :update]

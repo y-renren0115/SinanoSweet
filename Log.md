@@ -1,7 +1,7 @@
 # SinanoSweet 作業ログ
 
 ## 5/29(土)
-### 01_feature_of_login(ログイン・サインアップ機能)
+〜01_feature_of_login(ログイン・サインアップ機能)〜
 1.Gemの導入
  ✅1-1. deviseによるエンドユーザーとアドミンのログイン・サインアップ機能
  ✅1-2. rails db:seedによるアドミンの初期データセット
@@ -106,3 +106,35 @@ gem "refile-mini_magick"
 
 ## 6/14日(月)
 (⭐️) +アドミン,エンドユーザーの各コントローラーにlayoutオプションで個別ページを指定して切り分け完了！
+
+
+〜02_feature_account_manage(アカウント管理機能)〜
+(⭐️complete!)1.エンドユーザー#マイページ実装
+(⭐️complete!)2.エンドユーザー#会員情報編集
+(⭐️complete!)3.エンドユーザー#退会確認画面
+ + 6/18日 確認画面のみ作成! 退会機能(論理削除〜)
+
+4.管理者#会員一覧
+
+## 6/18(金)
+
+### パスワード変更画面の導入&編集
+1.コントローラー,インスタンスの記述
+ + 
+2.edit, updateの記述
+
+- パスワード変更画面に遷移しない。↓
++ config.web_console.whitelisted_ips = '0.0.0.0/0'をdevelopment.rbに追記。
++ registration_controllerからアプリ内パスワード再設定を行えるようにする！
+- test: newpass: qazplm 
++ 上のパスワードに変更したところ無事に変更できている→ (⭐️)パスワードの変更は完全にdeviseのブラックボックスとなっているので仕組みについて体系的な理解がしたい！
++ registration_controller内にafter_update_path_forメソッドを追記することでリダイレクト先も完璧に設定できた。
+
+## 6/19日(土)
+〜ノルマ〜
+・エンドユーザーの退会機能実装！
+ 1 - 『退会する』ボタンからcustomersコントローラーのwithdrawalアクションにつなげて論理削除を実装する！(paranoiaは使用せず❌)
+(⭐️) -現在退会ユーザーを弾くためのメソッド: reject_customerはemailで情報を取得しているが、ログインを名前に変更して実装したい！
+
++ テストユーザー: zin@email.com, qazplm
+
