@@ -19,6 +19,7 @@
           <div class="navbar-right">
             <% if end_user_signed_in? %>
               <ul class="navbar-items">
+                <p class ="user-name">ようこそ！<%= @customer_name %>さん</p>
                 <li class="item"><%= link_to "マイページ", customer_customers_path %></li>
                 <li class="item"><%= link_to "商品一覧", customer_items_path %></li>
                 <li class="item"><%= link_to "カート", customer_cart_items_path %></li>

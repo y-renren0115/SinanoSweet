@@ -1,3 +1,4 @@
+<p style ="color: red;"><%= flash[:error] %></p>
 <h2 class ="top-title">会員の方はこちらからログイン</h2>
   <div class="sign-container">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
