@@ -1,3 +1,47 @@
 // Place all the styles related to the admin/genres controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.genre-form {
+  width: 600px;
+  height: 50px;
+  text-align: center;
+  margin: 30px auto 0;
+}
+
+.main-label-genre {
+  position: absolute;
+  left: -50px;
+  top: 5px;
+}
+
+.sub-label-genre {
+  display: inline-block;
+  position: relative;
+  left: 40px;
+  padding-right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.submit-label {
+  display: inline-block;
+  position: relative;
+  left: 60px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.genre-container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.table-container-genre {
+  width: 600px;
+  margin: 0 auto;
+  txt-align: center;
+}
+
+.right-shift {
+  text-align: right;
+}

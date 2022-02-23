@@ -94,7 +94,10 @@ body {
 
 .footer-content {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 20px auto;
+  position: absolute;
+  bottom: 30px;
+  left: 1100px;
 }
 
 //end_user/registration/new&session/new

@@ -1,0 +1,45 @@
+<h1 class="top-title">商品編集</h1>
+<div class="form-container">
+  <%= form_with model:@item, url: admin_item_path(@item), method: :patch, local: true do |f| %>
+
+    <div class="field-item">
+      <div class="name-label">
+        <span>商品画像</span>
+      </div>
+      <%= f.attachment_field :image, autofocus: true, autocomplete: "image", class: "name-sub" %>
+    </div>
+
+    <div class="field-item">
+      <div class="name-label">
+        <span>商品名</span>
+      </div>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", size: 31.5 %>
+    </div>
+
+    <div class="field-item">
+      <span class ="name-label">商品説明</span>
+      <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", size: "30x5" %>
+    </div>
+    
+    <div class="field-item">
+      <span class ="name-label">ジャンル</span>
+       <%#= item.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+       <%= f.select :genre_id, Genre.all.map {|p| [p.name, p.id]}, :prompt => "選択してください", size: 60 %>
+    </div>
+    
+    <div class="field-item">
+      <span class ="name-label">税抜価格</span>
+      <%= f.number_field :price, autofocus: true, autocomplete: "price" %>円
+    </div>
+    
+    <div class="field-item">
+      <span class ="name-label">販売ステータス</span>
+      <%= f.radio_button :is_active, "販売中" %> 販売中 <%= f.radio_button :is_active, "販売停止中" %> 販売停止中
+    </div>    
+
+    <div class="field-item">
+      <span class="name-label"></span>
+      <%= f.submit "変更を保存", class: "signup-btn btn btn-success" %>
+    </div>
+  <% end %>
+</div>
