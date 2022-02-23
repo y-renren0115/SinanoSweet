@@ -1,0 +1,23 @@
+<h1 class="top-title">商品詳細</h1>
+<div class="item-container">
+  <div class="show-box">
+    <div class="show-img">
+      <% if @item.id == 1 %>
+        <%= image_tag "shinanocake.jpg", :size => "300x300" %><br />
+      <% elsif @item.id == 2 %>
+        <%= image_tag "mattyapurin.jpg", :size => "300x300" %><br />
+      <% elsif @item.id == 3 %>
+        <%= image_tag "itigosohuto.jpg", :size => "300x300" %><br />
+      <% elsif @item.id >= 4 %>
+        <%= attachment_image_tag @item, :image, fallback: "noimage.jpg", style: "height: 300px; width: 300px;" %>
+      <% else %>
+        <%= image_tag "default.png", :size => "300x300" %><br />
+      <% end %>
+    </div>
+    <div class="show-info">
+      <p class="item-name"><%= @item.name %></p>
+      <p><%= @item.introduction %></p>
+      <p>¥<%= @item.price %>(税込)</p>
+    </div>
+  </div>
+</div>
