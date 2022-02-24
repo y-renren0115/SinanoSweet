@@ -47,3 +47,27 @@
   margin-top: 70px;
   line-height: 30px;
 }
+
+.item-field {
+  margin-top: 20px;
+  display: flex;
+}
+
+.name-label-item {
+  width: 120px;
+  position: relative;
+  display: inline-block;
+}
+
+.genre-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-left: 20px;
+  font-size: 14px;
+  border: solid 1px;
+  border-radius: 4px;
+  border-color: #5cb85c;
+  background-color: #5cb85c;
+  text-decoration: none;
+  color: white;
+}
