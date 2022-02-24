@@ -17,7 +17,20 @@
     <div class="show-info">
       <p class="item-name"><%= @item.name %></p>
       <p><%= @item.introduction %></p>
-      <p>¥<%= @item.price %>(税込)</p>
+      <p>¥<%= (@item.price*1.08).floor %>(税込)</p>
+      <p></p>
+      <!--数量選択/カートアイテムとして追加機能-->
+      <%= form_with model:@cart_item, url: customer_cart_items_path, method: :post, local: true do |f| %>
+        <div class="item-field">
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <div class="name-label-item">
+            <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], include_blank: "選択して下さい", size: 60 %>
+          </div>
+          <div class="name-label-item">
+            <%= f.submit "カートに入れる", class: "genre-btn" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

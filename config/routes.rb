@@ -16,10 +16,12 @@ Rails.application.routes.draw do
     
   namespace :customer do
     get '/confirm' => 'customers#confirm'
+    resource :customers, only: [:show, :edit, :update]
     patch '/withdrawal' => 'customers#withdrawal'
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :create]
-    resource :customers, only: [:show, :edit, :update]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    delete '/cart_items/:id' => 'cart_items#destroy'
   end
   
   namespace :admin do
