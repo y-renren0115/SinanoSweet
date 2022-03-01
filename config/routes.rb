@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :update, :create]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     delete '/cart_items/:id' => 'cart_items#destroy'
+    resources :orders, only: [:index, :new, :create]
+    post '/orders/confirm' => 'orders#order_confirm'
+    get '/orders/done' => 'orders#order_done'
+    resources :addresses, only: [:index]
   end
   
   namespace :admin do
@@ -30,6 +34,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
   end
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

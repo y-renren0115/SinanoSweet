@@ -13,9 +13,10 @@
       <% @customers.each do |customer| %>
       <tr>
         <td><%= customer.id %></td>
-        <td><%= customer.last_name %><%= customer.first_name %></td>
+        <!--<td><%#= customer.last_name %><%#= customer.first_name %></td>-->
+        <td><%= link_to (customer.first_name + customer.last_name), admin_customer_path(customer), method: :get %></td>
         <td><%= customer.email %></td>
-        <td><%= customer.revert_status %></td> <!--style ="border-bottom: 1px solid #ddd;"-->
+        <td><%= customer.revert_status %></td><!--style ="border-bottom: 1px solid #ddd;"-->
       </tr>
       <% end %>
     </tbody>

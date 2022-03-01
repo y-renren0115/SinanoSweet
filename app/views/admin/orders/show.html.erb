@@ -1,0 +1,83 @@
+<h1 class ="top-title">注文履歴詳細</h1>
+<div class="order-container">
+  <%= flash[:notice] %>
+  <div class="order-status-info">
+    <%#= form_for @order, url: "/admin/orders/#{@order.id}" do |f| %>
+    <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
+    <table class="table-order">
+      <thead>
+        <tr>
+          <th class ="col-title-order">購入者</th><td class ="col-body-order"><%= @order.name %></th>
+        </tr>
+        <tr>
+          <th class ="col-title-order">注文日</th><td class ="col-body-order"><%= @order.created_at.strftime('%Y年%m月%d日 %H時%M分') %></td>
+        </tr>
+        <tr>
+          <th class ="col-title-order">発送先</th><td class ="col-body-order">〒<%= @order.postcode %><%=  @order.address %><br /><%=  @order.name %></td>
+        </tr>
+        <tr>
+          <th class ="col-title-order">支払方法</th>
+          <td class ="col-body-order">
+            <% if @order.pay_method == 0 %>
+              <p>クレジットカード</p>
+            <% else %>
+              <p>銀行振込</p>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th class ="col-title-order">注文ステータス</th>
+          <td class ="col-body-order" style ="border: none;">
+              <div class="admin-order-actions">
+                <%#= f.select :order_status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"], ["製作中", "製作中"], ["発送準備中", "発送準備中"], ["発送済み", "発送済み"]] %>
+                <%#= f.collection_select :order_status, Order.all, :order_status, :order_status %>
+                <%= f.select :order_status, Order.order_statuses.keys.to_a %>
+                <%= f.submit "更新", class: "login-btn", style: "margin-left: 15px;" %>
+              </div>
+          </td>
+        </tr>
+      </thead>
+    </table>
+    <% end %>
+  </div>
+  <div class="item-status-info">
+   <table class="table-item">
+      <thead>
+        <tr>
+          <th class ="col-title-customer">商品名</th>
+          <th class ="col-title-customer">単価 (税込)</th>
+          <th class ="col-title-customer">数量</th>   
+          <th class ="col-title-customer">小計</th>
+          <th class ="col-title-customer">製作ステータス</th>
+          <th class ="col-title-customer col-span"></th>
+        </tr>
+      <tbody>
+        <% @subtotal = 0 %>
+        <% @order_details.each do |order_detail| %>
+        <tr>
+          <td class ="col-body-customer"><%= order_detail.item.name %></th>
+          <td class ="col-body-customer"><%= order_detail.price %></td>
+          <td class ="col-body-customer"><%= order_detail.amount %></td>
+          <td class ="col-body-customer"><%= (order_detail.item.price*order_detail.amount*1.08).floor %><% @subtotal += (order_detail.item.price*order_detail.amount*1.08).floor %></td>
+          <%= form_for order_detail, url: "/admin/order_details/#{order_detail.id}" do |f| %>
+          <!--<td class ="col-body-customer"><%#= f.select :production_status, [["着手不可", "着手不可"], ["製作待ち", "製作待ち"], ["製作中", "製作中"], ["製作完了", "製作完了"]] %></td>-->
+          <td class ="col-body-customer"><%= f.select :production_status, OrderDetail.production_statuses.keys.to_a %></td>
+          <td class ="col-body-customer"><%= f.submit "更新", class: "login-btn" %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <table class="table-bill">
+        <tr>
+          <th class ="col-title-order">商品合計</th><td class ="col-body-order"><%= @subtotal %>円</th>
+        </tr>
+        <tr>
+          <th class ="col-title-order">送料</th><td class ="col-body-order"><%= @order.shipping_fee %>円</td>
+        </tr>
+        <tr>
+          <th class ="col-title-order">請求金額合計</th><td class ="col-body-order"><%= (@subtotal + @order.shipping_fee)%>円</td>
+        </tr>
+    </table>
+  </div>
+</div>

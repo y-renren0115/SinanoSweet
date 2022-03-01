@@ -2,10 +2,14 @@ class Customer::CustomersController < ApplicationController
   before_action :authenticate_end_user!
   layout 'customer'
     
+  def index
+    
+  end
+  
   def show
     @customer = current_end_user
-    @customer_name = current_end_user.last_name + current_end_user.first_name
-    @customer_name_kana = current_end_user.last_name_kana + current_end_user.first_name_kana
+    @customer_name = current_end_user.first_name + current_end_user.last_name
+    @customer_name_kana = current_end_user.first_name_kana + current_end_user.last_name_kana
   end
   
   def edit

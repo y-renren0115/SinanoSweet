@@ -30,16 +30,33 @@
   color: white;
 }
 
+.item-btn-area {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.item-btn-admin {
+  display: inline-block;
+  text-align: right;
+  padding: 6px 12px;
+  margin-left: 490px;
+  font-size: 14px;
+  border: solid 1px;
+  border-radius: 4px;
+  border-color: #5cb85c;
+  background-color: #5cb85c;
+  text-decoration: none;
+  color: white;
+}
+
 .name-label {
   width: 200px;
   position: relative;
   display: inline-block;
 }
 
-.name-sub {
-  position: absolute;
-  left: 1183px;
-  top: 193px;
+.item-image-label {
+  display: inline-block;
 }
 
 .first-name {
