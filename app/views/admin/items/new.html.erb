@@ -6,7 +6,9 @@
       <div class="name-label">
         <span>商品画像</span>
       </div>
-      <%= f.attachment_field :image, autofocus: true, autocomplete: "image", class: "name-sub" %>
+      <div class="item-image-label">
+        <%= f.attachment_field :image, autofocus: true, autocomplete: "image" %>
+      </div>
     </div>
 
     <div class="field-item">

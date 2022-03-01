@@ -1,0 +1,77 @@
+<h1 class="top-title">注文情報入力</h1>
+<div class="order-container">
+  <div class="order-actions">
+    <%= form_with model: @order, url: customer_orders_confirm_path, method: :post, local: true do |f| %>
+      <%= f.hidden_field :end_user_id, :value => current_end_user.id %>
+      <%= f.hidden_field :shipping_fee, :value => 800 %>
+      
+      <div class="field field-left-shift">
+        <label class="title-label pay-select">支払方法</label>
+        <div class="select-label pay-select">
+          <label>
+            <%= f.radio_button :pay_method, 0 %>  クレジットカード
+          </label>
+          <br>
+          <label>
+            <%= f.radio_button :pay_method, 1 %>  銀行振込
+          </label>
+        </div>
+      </div>
+        
+      <div class="field field-left-shift">
+        <label class="title-label" style ="text-align: left">お届け先</label>
+        <div class="select-label">
+          <label>
+            <%= f.radio_button :address_option, 0 %>  ご自身の住所
+          </label>
+        </div>
+        <div class="select-label contents">
+          〒<%= current_end_user.postcode %> <%= current_end_user.address %>
+          <br />
+          <%= current_end_user.last_name %> <%= current_end_user.first_name %>
+        </div>
+      </div>
+      
+      <div class="field field-left-shift">
+        <div class="select-label">
+          <label>
+            <%= f.radio_button :address_option, 1 %> 登録済み住所から選択
+          </label>
+        </div>
+        <div class="select-label contents">
+          <%= f.collection_select :shipping_address_for_order, current_end_user.addresses.all, :id, :address_info_merge, include_blank: "選択してください" %>
+        </div>
+      </div>
+      
+      <div class="field field-left-shift">
+        <div class="select-label">
+          <label>
+            <%= f.radio_button :address_option, 2 %> 新しいお届け先
+          </label>
+        </div>
+        <div class="select-label contents">
+          <div>
+            <p>郵便番号(ハイフンなし)</p>
+            <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode", class: "form-size" %>
+          </div>
+          <div>
+            <p>住所</p>
+            <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-size" %>
+          </div>
+          <div>
+            <p>宛先</p>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-size" %>
+          </div>
+        </div>
+      </div>
+       
+      <div class="actions actions-left-shift">
+        <% if @cart_items.empty? %>
+          <%= link_to "確認画面へ進む", customer_cart_items_path, class: "order-btn" %>
+        <% else %>
+          <%= f.submit "確認画面へ進む", class: "order-btn" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
