@@ -74,7 +74,7 @@ body {
 }
 
 .navbar-items .item {
-  font-family: "Noto Serif Japanese";
+  font-family: cursive, "MS ゴシック", "Noto Serif Japanese";
   height: 60px;
   width: 100px;
   line-height: 60px;
@@ -88,6 +88,7 @@ body {
 }
 
 .navbar-items .item a {
+  font-family: cursive, "MS ゴシック", "Noto Serif Japanese";
   color: white;
 }
 
@@ -97,12 +98,16 @@ body {
   text-decoration: none;
 }
 
-.footer-content {
+footer {
   text-align: center;
-  margin-top: 20px auto;
+}
+
+footer .footer-content {
+  width: 100%;
   position: absolute;
-  bottom: 30px;
-  left: 1100px;
+  bottom: 0;
+  margin: 30px auto;
+  test-align: center;
 }
 
 //end_user/registration/new&session/new
@@ -313,4 +318,14 @@ body {
   color: #fff;
   background-color: #d9534f;
   border-color: #d9534f;
+}
+
+.about-container {
+  width: 50%;
+  height: 100px;
+  margin: 30px auto;
+}
+
+.about-text {
+  text-align: center;
 }

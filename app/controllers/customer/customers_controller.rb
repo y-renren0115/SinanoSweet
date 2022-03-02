@@ -3,7 +3,6 @@ class Customer::CustomersController < ApplicationController
   layout 'customer'
     
   def index
-    
   end
   
   def show
