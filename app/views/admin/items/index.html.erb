@@ -1,4 +1,31 @@
 <h1 class ="top-title top-title-item">商品一覧</h1>
+  <% if @searches.present? %>
+    <div class="search-result">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class ="col-title-customer">商品ID</th>
+            <th class ="col-title-customer">商品名</th>
+            <th class ="col-title-customer">税抜価格</th>   
+            <th class ="col-title-customer">ジャンル</th>
+            <th class ="col-title-customer">ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <h4 style ="color: green;"><%= @searches.count %>件ヒットしました</h4>
+          <% @searches.each do |search| %>
+          <tr>
+            <td class ="col-body-customer" style ="color: blue;"><%= search.id %></th>
+            <td class ="col-body-customer" style ="color: blue;"><%= link_to search.name, admin_item_path(search.id), style: "color: blue;" %></td>
+            <td class ="col-body-customer" style ="color: blue;"><%= search.price %></td>
+            <td class ="col-body-customer" style ="color: blue;"><%= search.genre.name %></td>
+            <td class ="col-body-customer" style ="color: blue;"><%= search.revert_status %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 <div class="item-btn-area">
     <%= link_to "商品新規登録", new_admin_item_path, class: "item-btn-admin" %>
 </div>

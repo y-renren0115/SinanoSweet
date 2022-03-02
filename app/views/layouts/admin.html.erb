@@ -24,6 +24,12 @@
                 <li class="item"><%= link_to "注文履歴一覧", admin_orders_path %></li>
                 <li class="item"><%= link_to "ジャンル一覧", admin_genres_path %></li>
                 <li class="item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+                <div class="search-form">
+                  <%= form_tag(admin_items_path, method: :get) do %>
+                    <%= text_field_tag :search %>
+                    <%= submit_tag '商品検索',:name => nil %>
+                  <% end %>
+                </div>
               </ul>
             <% else %>
               <ul class="navbar-items">

@@ -3,7 +3,12 @@ class Customer::ItemsController < ApplicationController
     layout 'customer'
     
     def index
-      @items = Item.page(params[:page]).per(10)
+      if params[:search].present?
+        @items = Item.page(params[:page]).per(10)
+        @searches = Item.search(params[:search])
+      else
+        @items = Item.page(params[:page]).per(10)
+      end
     end
     
     def show

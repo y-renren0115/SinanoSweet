@@ -18,4 +18,10 @@ class Item < ApplicationRecord
     genre_name = genre.name
     return genre_name
   end
+   
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"]) 
+    end
+  end
 end
