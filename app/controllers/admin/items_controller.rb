@@ -1,8 +1,12 @@
 class Admin::ItemsController < ApplicationController
+    before_action :authenticate_admin!
     layout 'admin'
     
     def index
-      @items = Item.page(params[:page]).per(10)
+      if params[:search].present?
+        @searches = Item.page(params[:page]).per(10).search(params[:search])
+      end
+        @items = Item.page(params[:page]).per(10)
     end
     
     def show
