@@ -24,7 +24,7 @@ class Customer::CartItemsController < ApplicationController
     def update
       @cart_item = CartItem.find(params[:id])
       if @cart_item.update(cart_item_params)
-        flash[:notice] = "数量変更完了！"
+        flash[:notice] = "数量変更完了しました"
         redirect_to customer_cart_items_path
       end
     end
