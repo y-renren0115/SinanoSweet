@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :new, :create]
     post '/orders/confirm' => 'orders#order_confirm'
     get '/orders/done' => 'orders#order_done'
-    resources :addresses, only: [:index]
+    # resources :addresses, only: [:index, :show, :dreate, :edit, :update, :destroy]
+    resources :addresses, except: [:new]
   end
   
   namespace :admin do

@@ -20,7 +20,7 @@
           <% order.order_details.each do |amount| %>
             <% if order.id == amount.order_id %>
              <% @item_amount += amount.amount %>
-            <% end%>
+            <% end %>
           <% end %>
           <td class ="col-body-customer"><%= @item_amount %></td>
           <td class ="col-body-customer"><%= order.total_billed_amount %>円</td>
