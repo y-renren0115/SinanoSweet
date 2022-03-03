@@ -4,11 +4,12 @@
 
 ## サインイン・サインアップ方法
 ### 管理者ログイン
-- メールアドレス: aaadmin@email.com, パスワード: aaadmin
+- メールアドレス: aaadmin\@email.com, パスワード: aaadmin
 - [こちらから管理者ログインできます](https://sinanosweet.herokuapp.com/admin/sign_in)
 
 ### 顧客ログイン
-- メールアドレス: sinanotarou@email.com, パスワード: sinano
+- メールアドレス: sinanotarou\@email.com, パスワード: sinano
+- [こちらから顧客ログインできます](https://sinanosweet.herokuapp.com/end_user/sign_in)
 
 ### 新規顧客登録
 - 新規登録画面からお名前、メールアドレス、ご住所、パスワードをご登録いただくことで利用できます。
