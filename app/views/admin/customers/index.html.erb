@@ -1,0 +1,25 @@
+<h1 class ="top-title">会員一覧</h1>
+<div class="table-container">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody class ="table-striped">
+      <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <!--<td><%#= customer.last_name %><%#= customer.first_name %></td>-->
+        <td><%= link_to (customer.last_name + customer.first_name), admin_customer_path(customer), method: :get %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.revert_status %></td><!--style ="border-bottom: 1px solid #ddd;"-->
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @customers %>
+</div>

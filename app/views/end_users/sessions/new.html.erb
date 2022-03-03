@@ -1,0 +1,31 @@
+<p style ="color: red;"><%= flash[:error] %></p>
+<h2 class ="top-title">会員の方はこちらからログイン</h2>
+  <div class="sign-container">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+      <div class="field">
+          <span class ="login-label"><%= f.label :メールアドレス %></span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "30" %>
+      </div>
+      
+      <div class="field">
+          <span class ="login-label" style ="left: -100px"><%= f.label :パスワード %></span>
+          <div class="form-area-pass">
+            <%= f.password_field :password, autocomplete: "current-password", size: "30" %>
+          </div>
+      </div>
+      
+      <%# if devise_mapping.rememberable? %>
+        <!--<div class="field">-->
+          <%#= f.check_box :remember_me %>
+          <%#= f.label :remember_me %>
+        <!--</div>-->
+      <%# end %>
+      
+      <div class="actions">
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    
+    <%= render "end_users/shared/links" %>
+</div>

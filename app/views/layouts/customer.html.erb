@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SinanoSweet</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div class="navigation">
+          <div class="navbar-left">
+            <%= link_to "SinanoSweet", root_path %>
+          </div>
+          <div class="navbar-right">
+            <% if end_user_signed_in? %>
+              <ul class="navbar-items">
+                <p class ="user-name">ようこそ！<%= current_end_user.first_name %><%= current_end_user.last_name %>さん</p>
+                <li class="item"><%= link_to "マイページ", customer_customers_path %></li>
+                <li class="item"><%= link_to "商品一覧", customer_items_path %></li>
+                <li class="item"><%= link_to "カート", customer_cart_items_path %></li>
+                <li class="item"><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %></li>
+                <div class="search-form">
+                  <%= form_tag(customer_items_path, method: :get) do %>
+                    <%= text_field_tag :search %>
+                    <%= submit_tag "商品検索", :name => nil %>
+                  <% end %>
+                </div>
+              </ul>
+            <% else %>
+              <ul class="navbar-items">
+                <li class="item"><%= link_to "お店情報", about_path %></li>
+                <li class="item"><%= link_to "取扱商品", items_path %></li>
+                <li class="item"><%= link_to "新規登録", new_end_user_registration_path %></li>
+                <li class="item"><%= link_to "ログイン", new_end_user_session_path %></li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <%= yield %>
+    
+    <footer>
+      <p class ="footer-content">CopyRight ©️️ 2021 Ren Yoshizawa All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>

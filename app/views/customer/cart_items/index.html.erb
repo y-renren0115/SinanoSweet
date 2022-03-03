@@ -1,0 +1,66 @@
+<h1 class="top-title">ショッピングカート</h1>
+<%= flash[:notice] %>
+<div class="cart-item-container">
+  <div class="cart-item-info">
+    <div class="all-delete-btn">
+      <%= link_to "カートを空にする", customer_cart_items_destroy_all_path, method: :delete, class: "danger-btn", data: {confirm: "本当に削除しますか？"} %>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class ="col-title-cart-item">商品名</th>
+          <th class ="col-title-cart-item">単価(税込)</th>
+          <th class ="col-title-cart-item">数量</th>   
+          <th class ="col-title-cart-item">小計</th>
+          <th class ="col-title-cart-item"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @total = 0 %>
+        <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td class ="col-body-cart-item">
+            <% if cart_item.item_id == 1 %>
+              <%= image_tag "shinanocake.jpg", :size => "50x50" %><br />
+            <% elsif cart_item.item_id == 2 %>
+              <%= image_tag "mattyapurin.jpg", :size => "50x50" %><br />
+            <% elsif cart_item.item_id == 3 %>
+              <%= image_tag "itigosohuto.jpg", :size => "50x50" %><br />
+            <% elsif cart_item.item_id >= 4 %>
+              <%= attachment_image_tag cart_item.item, :image, fallback: "noimage.jpg", style: "height: 50px; width: 50px;" %><br />
+            <% else %>
+              <%= image_tag "default.png", :size => "50x50" %><br />
+            <% end %>
+            <%= cart_item.item.name %>
+          </td>
+          <td class ="col-body-cart-item"><%= (cart_item.item.price*1.08).floor %></td>
+          <td class ="col-body-cart-item">
+            <%= form_with model:cart_item, url: customer_cart_item_path(cart_item), method: :patch, local: true do |f| %>
+              <%= f.hidden_field :id, :value => cart_item.id %>
+              <div class="cart-field">
+                <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], include_blank: "選択してください", size: 60 %>
+                <div class="">
+                  <%= f.submit "変更", class: "login-btn", style: "margin-left: 10px" %>
+                </div>
+              </div>
+            <% end %>
+          </td>
+          <td class ="col-body-cart-item"><%= cart_item.amount*(cart_item.item.price*1.08).floor %><% @total += cart_item.amount*(cart_item.item.price*1.08).floor %></td>
+          <td class ="col-body-cart-item"><%= link_to "削除する", customer_cart_item_path(cart_item), method: :delete, class: "danger-btn", data: {confirm: "本当に削除しますか？"} %></td>
+        </tr>
+        <% end %>
+        <tr class ="col-body-cart-item-total">
+          <th class ="total-contents">合計</th>
+          <th><%= @total %></th>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to "買い物を続ける", items_path, class: "login-btn" %>
+  </div>
+  <div class ="btn-center-shift">
+    <% if @cart_items.exists? %>
+        <%= link_to "情報入力に進む", new_customer_order_path, class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
+</div>

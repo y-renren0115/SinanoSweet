@@ -1,0 +1,36 @@
+<h1 class="top-title">商品詳細</h1>
+<div class="item-container">
+  <div class="show-box">
+    <div class="show-img">
+      <% if @item.id == 1 %>
+        <%= image_tag "shinanocake.jpg", :size => "300x300" %><br />
+      <% elsif @item.id == 2 %>
+        <%= image_tag "mattyapurin.jpg", :size => "300x300" %><br />
+      <% elsif @item.id == 3 %>
+        <%= image_tag "itigosohuto.jpg", :size => "300x300" %><br />
+      <% elsif @item.id >= 4 %>
+        <%= attachment_image_tag @item, :image, fallback: "noimage.jpg", style: "height: 300px; width: 300px;" %>
+      <% else %>
+        <%= image_tag "default.png", :size => "300x300" %><br />
+      <% end %>
+    </div>
+    <div class="show-info">
+      <p class="item-name"><%= @item.name %></p>
+      <p><%= @item.introduction %></p>
+      <p>¥<%= (@item.price*1.08).floor %>(税込)</p>
+      <p></p>
+      <!--数量選択/カートアイテムとして追加機能-->
+      <%= form_with model:@cart_item, url: customer_cart_items_path, method: :post, local: true do |f| %>
+        <div class="item-field">
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <div class="name-label-item">
+            <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], include_blank: "選択して下さい", size: 60 %>
+          </div>
+          <div class="name-label-item">
+            <%= f.submit "カートに入れる", class: "genre-btn" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

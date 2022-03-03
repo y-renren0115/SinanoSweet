@@ -1,0 +1,61 @@
+<h1 class="top-title">商品詳細</h1>
+<div class="item-show-container ">
+  
+    <div class="field-item">
+      <div class="name-label">
+        <% if @item.id == 1 %>
+          <%= image_tag "shinanocake.jpg", :size => "300x300" %><br />
+        <% elsif @item.id == 2 %>
+          <%= image_tag "mattyapurin.jpg", :size => "300x300" %><br />
+        <% elsif @item.id == 3 %>
+          <%= image_tag "itigosohuto.jpg", :size => "300x300" %><br />
+        <% elsif @item.id >= 4 %>
+          <%= attachment_image_tag @item, :image, fallback: "noimage.jpg", style: "height: 300px; width: 300px;" %>
+        <% else %>
+          <%= image_tag "default.png", :size => "300x300" %><br />
+        <% end %>
+      </div>
+    </div>
+
+    <div class="field-item">
+      <div class="name-label">
+        <span>商品名</span>
+      </div>
+      <div class="item-content-show">
+        <%= @item.name %>
+      </div>
+    </div>
+
+    <div class="field-item">
+      <span class ="name-label">商品説明</span>
+      <div class="item-content-show">
+        <%= @item.introduction %>
+      </div>
+    </div>
+    
+    <div class="field-item">
+      <span class ="name-label">ジャンル</span>
+      <div class="item-content-show">
+        <%= @item.revert_genre(@item) %>
+      </div>
+    </div>
+    
+    <div class="field-item">
+      <span class ="name-label">税抜価格</span>
+      <div class="item-content-show">
+        <%= @item.price %>円
+      </div>
+    </div>
+    
+    <div class="field-item">
+      <span class ="name-label">販売ステータス</span>
+      <div class="item-content-show">
+        <%= @item.revert_status %>
+      </div>
+    </div>    
+    
+    <div class="actions-item">
+      <span class="item-content-show"></span>
+      <%= link_to "編集する", edit_admin_item_path(@item), method: :get, class: "signup-btn btn btn-success" %>
+    </div>
+</div>

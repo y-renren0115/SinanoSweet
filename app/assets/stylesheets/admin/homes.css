@@ -1,0 +1,5 @@
+.top-container {
+  width: 100%;
+  background-image: url("<%= asset_path('sinanosweet-top.png') %>"); }
+
+/*# sourceMappingURL=homes.css.map */

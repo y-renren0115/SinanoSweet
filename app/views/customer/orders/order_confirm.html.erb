@@ -1,0 +1,89 @@
+<h1 class="top-title">注文情報確認</h1>
+<div class="order-confirm-container">
+  <%= form_with model: @order, url: customer_orders_path, method: :post, local: true do |order| %>
+  <%= order.hidden_field :end_user_id, :value => params[:order][:end_user_id] %>
+  <%= order.hidden_field :shipping_fee, :value => params[:order][:shipping_fee] %>
+  <%= order.hidden_field :pay_method, :value => params[:order][:pay_method] %>
+  <%= order.hidden_field :address_option, :value => params[:address_option] %>
+  <div class="row">
+    <div class="col-xs-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>税込</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <% @item_total = 0 %>
+        <% @billed_total = 0 %>
+        <% @order_cart_items.each do |order_cart_item| %>
+        <tbody>
+          <tr>
+            <td>
+              <% if order_cart_item.item_id == 1 %>
+                <%= image_tag "shinanocake.jpg", :size => "50x50" %><br />
+              <% elsif order_cart_item.item_id == 2 %>
+                <%= image_tag "mattyapurin.jpg", :size => "50x50" %><br />
+              <% elsif order_cart_item.item_id == 3 %>
+                <%= image_tag "itigosohuto.jpg", :size => "50x50" %><br />
+              <% elsif order_cart_item.item_id >= 4 %>
+                <%= attachment_image_tag order_cart_item.item, :image, fallback: "noimage.jpg", style: "height: 50px; width: 50px;" %><br />
+              <% else %>
+                <%= image_tag "default.png", :size => "50x50" %><br />
+              <% end %>
+              <%= order_cart_item.item.name %></td>
+            <td><%= order_cart_item.item.price %></td>
+            <td><%= order_cart_item.amount %></td>
+            <td><%= (order_cart_item.item.price*order_cart_item.amount) %><% @item_total += (order_cart_item.item.price*order_cart_item.amount) %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      
+      <label class="title-label">支払方法</label>
+      <% if params[:order][:pay_method] == "0" %>
+        <p>クレジットカード</p>
+      <% elsif params[:order][:pay_method] == "1" %>
+        <p>銀行振込</p>
+      <% end %>
+      <label class="title-label">お届け先</label>
+      <% if params[:order][:address_option] == "0" %>
+        <p><%= current_end_user.postcode %> <%= current_end_user.address%><br /><%= current_end_user.last_name %><%= current_end_user.first_name %></p>
+        <%= order.hidden_field :postcode, :value => current_end_user.postcode %>
+        <%= order.hidden_field :address, :value => current_end_user.address %>
+        <%= order.hidden_field :name, :value => @user_name %>
+      <% elsif params[:order][:address_option] == "1" %>
+        <p><%= session[:postcode] %> <%= session[:address] %><br /><%= session[:name] %></p>
+      <% elsif params[:order][:address_option] == "2" %>
+        <p><%= params[:order][:postcode] %> <%= params[:order][:address] %><br /><%= params[:order][:name] %></p>
+      <% end %>
+    </div>
+    
+    <div class="col-lg-4">
+      <table class="table fee-table">
+        <tbody>
+          <tr>
+            <th>商品合計</th>
+            <th><%= @item_total %></th>
+          </tr>
+          <tr>
+            <th>送料</th>
+            <th><%= params[:order][:shipping_fee] %></th>
+          </tr>
+          <tr>
+            <th>請求金額</th>
+            <th><%= (@item_total + params[:order][:shipping_fee].to_i) %><% @billed_total = @item_total + params[:order][:shipping_fee].to_i %></th>
+                <%= order.hidden_field :total_billed_amount, :value => @billed_total.to_i %>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+  <div class="actions confirm-actions-left-shift">
+    <%= order.submit "注文を確定する", class: "order-btn", data: {confirm: "注文を確定してよろしいですか？"} %>
+  </div>
+  <% end %>
+</div>

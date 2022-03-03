@@ -1,0 +1,54 @@
+// Place all the styles related to the customer/customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//--customers#top--
+
+
+//--customers#edit--
+.actions {
+  position: relative;
+}
+
+.btn-origin {
+  width: 124px;
+  height: 34px;
+  font-size: 14px;
+  position: absolute;
+  top: 10px;
+  left: 30px;
+}
+
+//--customers#confirm--
+.text-container {
+  width: 480px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.text-container > p {
+  font-size: 18px;
+}
+
+.btn-container {
+  width: 480px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.btn-no {
+  position: absolute;
+  top: 10px;
+  left: 120px;
+}
+
+.btn-yes {
+  width: 96px;
+  height: 34px;
+  font-size: 14px;
+  line-height: 34px;
+  position: absolute;
+  top: 10px;
+  left: 240px;
+}

@@ -1,0 +1,33 @@
+<h2 class ="top-title">管理者ログイン</h2>
+<div class="sign-container">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field">
+      <div class="login-label">
+        <%= f.label :メールアドレス %><br />
+      </div>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  
+    <div class="field">
+      <div class="login-label" style ="left: -66px;">
+        <%= f.label :パスワード %>
+      </div>
+      <div class="form-area-pass">
+        <%= f.password_field :password, autocomplete: "current-password", style: "potion: relative;" "left: -100px;" %>
+      </div>
+    </div>
+  
+    <%# if devise_mapping.rememberable? %>
+      <!--<div class="field">-->
+        <%#= f.check_box :remember_me %>
+        <%#= f.label :remember_me %>
+      <!--</div>-->
+    <%# end %>
+  
+    <div class="actions">
+      <%= f.submit "ログイン", class: "btn btn-primary" ,style: "margin-bottom: 30px;" %>
+    </div>
+  <% end %>
+  
+  <%#= render "admins/shared/links" %>
+</div>
